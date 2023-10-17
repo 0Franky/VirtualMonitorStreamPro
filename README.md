@@ -56,6 +56,10 @@ This is currently a personal project and is not intended to be a professional ap
 
 </details>
 
+
+<br>
+
+
 # Features Recap
 | Platform | Server | Client |
 |------------- |-------  |-------- |
