@@ -68,3 +68,13 @@ This is currently a personal project and is not intended to be a professional ap
 | macOS        |   ❌    |   ✅    |
 | Android      |   ❌    |   ✅    |
 | iOS          |   ❌    |   ✅    |
+
+
+# Main Dependencies
+- mpv videoplayer
+- ffmpeg
+- usbmmidd_v2 (Windows Only)
+
+
+# Special Thanks
+@morrolinux
