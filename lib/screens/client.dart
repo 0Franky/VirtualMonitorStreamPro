@@ -27,9 +27,9 @@ class MediaPlayer extends StatefulWidget {
 }
 
 class _MediaPlayerState extends State<MediaPlayer> {
-
   late final player = Player(
     configuration: const PlayerConfiguration(
+      logLevel: MPVLogLevel.debug,
       title: '$APP_NAME Client',
       muted: true,
       protocolWhitelist: [STREAM_PROTOCOL],
@@ -48,8 +48,16 @@ class _MediaPlayerState extends State<MediaPlayer> {
   @override
   void initState() {
     super.initState();
-    // TODO - asked to media-kit group
-    // player.setParams(CLIENT_INIT_PLAYER_PARAMS);
+    initPlayer();
+  }
+
+  void initPlayer() async {
+    if (player.platform is NativePlayer) {
+      for (final config in CLIENT_INIT_PLAYER_PARAMS) {
+        await (player.platform as dynamic).setProperty(config[0], config[1]);
+      }
+    }
+
     player.open(Media('$STREAM_PROTOCOL://${widget.source}$CLIENT_URI_PARAMS'));
   }
 
