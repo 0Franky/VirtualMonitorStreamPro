@@ -11,7 +11,10 @@ class ServerPreConfig {
 
     var shell = Shell();
     for (final cmd in preStartConfigCmds) {
-      await shell.run(cmd);
+      await Future.any([
+        shell.run(cmd),
+        Future.delayed(const Duration(seconds: 1)),
+      ]);
     }
   }
 }

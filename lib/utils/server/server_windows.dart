@@ -21,7 +21,7 @@ class _WindowsServerConfig extends ServerConfigInterface {
     vaapiDeviceConfig =
         "-init_hw_device $hwAcc:0 -hwaccel $hwAcc -hwaccel_device $hwAcc";
     displayOptions =
-        "-offset_x -$width -offset_y 0 -video_size ${width}x$height";
+        "-offset_x 0 -offset_y 0 -video_size ${width}x$height";
     videoCodec = "h264_nvenc";
     display = "desktop";
 

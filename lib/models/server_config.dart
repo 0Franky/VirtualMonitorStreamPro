@@ -7,10 +7,10 @@ import 'package:process_run/shell.dart';
 
 abstract class ServerConfigInterface {
   late String ffmpegGrubber;
-  String vaapiDeviceConfig = "";
-  String scaleVaapiConfig = "";
   late String videoCodec;
   late String display;
+  String vaapiDeviceConfig = "";
+  String scaleVaapiConfig = "";
   String displayOptions = "";
   String qualityIndex = '26';
   String rate = "2000K";
