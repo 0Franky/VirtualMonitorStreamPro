@@ -11,6 +11,7 @@ abstract class ServerConfigInterface {
   late String ffmpegGrubber;
   late String videoCodec;
   late String display;
+  String ffmpegProgramFile = "ffmpeg";
   String vaapiDeviceConfig = "";
   String scaleVaapiConfig = "";
   String displayOptions = "";
@@ -51,8 +52,8 @@ abstract class ServerConfigInterface {
 
     final ffmpegPath =
         "${Directory.current.path}${Platform.pathSeparator}resources${Platform.pathSeparator}ffmpeg${Platform.pathSeparator}";
-    print("${ffmpegPath}ffmpeg.exe $ffmpegCmd");
-    ffmpegShell.run("${ffmpegPath}ffmpeg.exe $ffmpegCmd");
+    print("${ffmpegPath}$ffmpegProgramFile $ffmpegCmd");
+    ffmpegShell.run("${ffmpegPath}$ffmpegProgramFile $ffmpegCmd");
   }
 
   void stopServerStreaming() {

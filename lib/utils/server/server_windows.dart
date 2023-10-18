@@ -17,11 +17,11 @@ class _WindowsServerConfig extends ServerConfigInterface {
   _WindowsServerConfig() {
     const hwAcc = "cuda";
 
+    ffmpegProgramFile += ".exe";
     ffmpegGrubber = "gdigrab";
     vaapiDeviceConfig =
         "-init_hw_device $hwAcc:0 -hwaccel $hwAcc -hwaccel_device $hwAcc";
-    displayOptions =
-        "-offset_x 0 -offset_y 0 -video_size ${width}x$height";
+    displayOptions = "-offset_x 0 -offset_y 0 -video_size ${width}x$height";
     videoCodec = "h264_nvenc";
     display = "desktop";
 
