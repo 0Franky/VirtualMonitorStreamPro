@@ -1,4 +1,4 @@
-import 'package:ffmpeg_kit_flutter/ffmpeg_kit.dart';
+// import 'package:ffmpeg_kit_flutter_full_gpl/ffmpeg_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:media_kit/media_kit.dart';
 import 'package:virtual_monitor_stream_pro/consts/strings.dart';
@@ -42,6 +42,6 @@ class _VirtualMonitorStreamProState extends State<VirtualMonitorStreamPro> {
   }
 
   void disposeApp() {
-    FFmpegKit.cancel();
+    // FFmpegKit.cancel();
   }
 }
