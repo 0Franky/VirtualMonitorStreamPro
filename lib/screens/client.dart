@@ -29,7 +29,7 @@ class MediaPlayer extends StatefulWidget {
 class _MediaPlayerState extends State<MediaPlayer> {
   late final player = Player(
     configuration: const PlayerConfiguration(
-      logLevel: MPVLogLevel.debug,
+      // logLevel: MPVLogLevel.debug,
       title: '$APP_NAME Client',
       muted: true,
       protocolWhitelist: [STREAM_PROTOCOL],

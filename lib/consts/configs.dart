@@ -5,4 +5,8 @@ const CLIENT_INIT_PLAYER_PARAMS = [
   ['untimed', ''],
   ['no-demuxer-thread', ''],
   ['vd-lavc-threads', '1'],
+  // ['keep-open', ''],
+  // ['hwdec-codecs', 'all'],
+  // ['cache-secs', '0'],
+  // ['demuxer-readahead-secs', '0'],
 ];
