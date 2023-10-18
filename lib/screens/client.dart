@@ -7,7 +7,7 @@ import 'package:virtual_monitor_stream_pro/consts/strings.dart';
 class MediaPlayerScreen extends StatelessWidget {
   final String loopbackAddress;
 
-  MediaPlayerScreen({this.loopbackAddress = '127.0.0.1:12345'});
+  MediaPlayerScreen({this.loopbackAddress = '127.0.0.1:$DEFAULT_PORT'});
 
   @override
   Widget build(BuildContext context) {
