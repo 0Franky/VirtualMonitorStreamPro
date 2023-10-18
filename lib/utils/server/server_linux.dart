@@ -1,7 +1,11 @@
 import 'package:virtual_monitor_stream_pro/models/server_config.dart';
 import 'package:virtual_monitor_stream_pro/models/server_pre_config.dart';
 
-ServerPreConfig Internal_GetServerPreConfig() => ServerPreConfig();
+ServerPreConfig Internal_GetServerPreConfig() => ServerPreConfig(preStartConfigCmds: [
+  // "sudo apt install ffmpeg", // OR
+  // "pacman -S ffmpeg", // OR
+  // "yay -S ffmpeg-full-git", // OR
+]);
 
 ServerConfigInterface Internal_GetServerConfig() => _LinuxServerConfig();
 
