@@ -65,17 +65,17 @@ class HomePage extends StatelessWidget {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Text('Pre config device DONE!'),
                         ));
-                    print("Pre config device DONE!");
+                        print("Pre config device DONE!");
                       },
                     ),
                 ElevatedButton(
                   child: const Text('Start Server'),
                   onPressed: () async {
-                    // await getServerConfig().addVirtualMonitor();
-                    // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    //   content: Text('makeVirtualMonitor DONE!'),
-                    // ));
-                    // print("makeVirtualMonitor DONE!");
+                    await getServerConfig().addVirtualMonitor();
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text('makeVirtualMonitor DONE!'),
+                    ));
+                    print("makeVirtualMonitor DONE!");
 
                     await getServerConfig().startServerStreaming();
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(

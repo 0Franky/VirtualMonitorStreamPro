@@ -48,14 +48,20 @@ abstract class ServerConfigInterface {
   Future<void> addVirtualMonitor() async {
     var shell = Shell();
     for (final cmd in addVirtualMonitorCmds) {
-      await shell.run(cmd);
+      await Future.any([
+        shell.run(cmd),
+        Future.delayed(const Duration(seconds: 1)),
+      ]);
     }
   }
 
   Future<void> removeVirtualMonitor() async {
     var shell = Shell();
     for (final cmd in removeVirtualMonitorCmds) {
-      await shell.run(cmd);
+      await Future.any([
+        shell.run(cmd),
+        Future.delayed(const Duration(seconds: 1)),
+      ]);
     }
   }
 }
