@@ -25,10 +25,12 @@ abstract class ServerConfigInterface {
   late List<String> addVirtualMonitorCmds;
   late List<String> removeVirtualMonitorCmds;
 
+  FFmpegSession? fFmpegSession;
+
   Future<void> startServerStreaming() async {
     print(ffmpegCmd);
-    final FFmpegSession session = await FFmpegKit.execute(ffmpegCmd);
-    final returnCode = await session.getReturnCode();
+    fFmpegSession = await FFmpegKit.execute(ffmpegCmd);
+    final returnCode = await fFmpegSession!.getReturnCode();
 
     if (ReturnCode.isSuccess(returnCode)) {
       if (kDebugMode) {
@@ -43,6 +45,10 @@ abstract class ServerConfigInterface {
         print("ERROR");
       }
     }
+  }
+
+  void stopServerStreaming() {
+    if (fFmpegSession != null) FFmpegKit.cancel(fFmpegSession!.getSessionId());
   }
 
   Future<void> addVirtualMonitor() async {
