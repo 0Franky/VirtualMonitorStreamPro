@@ -1,0 +1,2 @@
+- [ ] https://github.com/media-kit/media-kit#permissions
+- [ ] https://github.com/leanflutter/window_manager#linux (start from here - maybe)

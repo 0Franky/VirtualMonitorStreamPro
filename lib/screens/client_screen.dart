@@ -3,17 +3,46 @@ import 'package:media_kit/media_kit.dart';
 import 'package:media_kit_video/media_kit_video.dart';
 import 'package:virtual_monitor_stream_pro/consts/configs.dart';
 import 'package:virtual_monitor_stream_pro/consts/strings.dart';
+import 'package:virtual_monitor_stream_pro/style/theme.dart';
+import 'package:window_manager/window_manager.dart';
 
-class MediaPlayerScreen extends StatelessWidget {
+class ClientScreen extends StatelessWidget {
   final String loopbackAddress;
 
-  MediaPlayerScreen({this.loopbackAddress = '127.0.0.1:$DEFAULT_PORT'});
+  ClientScreen({this.loopbackAddress = '127.0.0.1:$DEFAULT_PORT'});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(kToolbarHeight),
+        child: Opacity(
+          opacity: 0.8,
+          child: appAppBar(
+            context: context,
+            title: '$APP_NAME - Client',
+            actions: [
+              IconButton(
+                icon: const Icon(
+                  Icons.fullscreen_rounded,
+                ),
+                onPressed: toggleFullScreen,
+              )
+            ],
+          ),
+        ),
+      ),
       body: MediaPlayer(source: loopbackAddress),
     );
+  }
+
+  void toggleFullScreen() async {
+    if (await windowManager.isFullScreen()) {
+      await windowManager.setFullScreen(true);
+    } else {
+      await windowManager.setFullScreen(false);
+    }
   }
 }
 

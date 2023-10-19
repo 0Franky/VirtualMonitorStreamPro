@@ -2,18 +2,19 @@
 import 'package:flutter/material.dart';
 import 'package:media_kit/media_kit.dart';
 import 'package:virtual_monitor_stream_pro/consts/strings.dart';
-import 'package:virtual_monitor_stream_pro/screens/home_page.dart';
+import 'package:virtual_monitor_stream_pro/screens/home_page_screen.dart';
 import 'package:virtual_monitor_stream_pro/style/theme.dart';
+import 'package:window_manager/window_manager.dart';
 
-void main() {
-  prepareApp();
+void main() async {
+  await prepareApp();
   runApp(const VirtualMonitorStreamPro());
 }
 
-void prepareApp() {
+Future<void> prepareApp() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Necessary initialization for package:media_kit.
+  await windowManager.ensureInitialized();
   MediaKit.ensureInitialized();
 }
 
@@ -37,7 +38,7 @@ class _VirtualMonitorStreamProState extends State<VirtualMonitorStreamPro> {
     return MaterialApp(
       title: APP_NAME,
       theme: appTheme,
-      home: const HomePage(),
+      home: const HomePageScreen(),
     );
   }
 
