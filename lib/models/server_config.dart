@@ -3,36 +3,25 @@ import 'dart:io';
 // import 'package:ffmpeg_kit_flutter_full_gpl/ffmpeg_session.dart';
 // import 'package:ffmpeg_kit_flutter_full_gpl/return_code.dart';
 // import 'package:flutter/foundation.dart';
-import 'package:virtual_monitor_stream_pro/consts/configs.dart';
+// import 'package:virtual_monitor_stream_pro/consts/configs.dart';
 // import 'package:ffmpeg_kit_flutter_full_gpl/ffmpeg_kit.dart';
 import 'package:process_run/shell.dart';
+import 'package:virtual_monitor_stream_pro/models/ffmpeg_config.dart';
 
-abstract class ServerConfigInterface {
-  late String ffmpegGrubber;
-  late String videoCodec;
-  late String display;
-  String ffmpegProgramFile = "ffmpeg";
-  String vaapiDeviceConfig = "";
-  String scaleVaapiConfig = "";
-  String displayOptions = "";
-  String qualityIndex = '26';
-  String rate = "2000K";
-  String bufsize = "512k";
-  String framerate = "60";
-  String width = "1920";
-  String height = "1080";
-  String optionalParams = "";
-  late String ffmpegCmd =
-      '-f $ffmpegGrubber -s ${width}x$height -framerate $framerate $displayOptions $vaapiDeviceConfig $scaleVaapiConfig -i $display -c:v $videoCodec -qp:v $qualityIndex -bf 0 $optionalParams -b:v $rate -minrate $rate -maxrate $rate -bufsize $bufsize -f rawvideo $STREAM_PROTOCOL://$DEFAULT_CLIENT_IP:$DEFAULT_PORT';
-
+class ServerConfig {
+  final List<FfmpegConfig> ffmpegConfigs;
   late List<String> addVirtualMonitorCmds;
   late List<String> removeVirtualMonitorCmds;
 
   // FFmpegSession? ffmpegSession;
   var ffmpegShell = Shell();
 
-  Future<void> startServerStreaming() async {
-    print(ffmpegCmd);
+  ServerConfig({
+    required this.ffmpegConfigs,
+  });
+
+  Future<void> startServerStreaming(FfmpegConfig currFfmpegConfig) async {
+    print(currFfmpegConfig.ffmpegConfigCmd);
     // ffmpegSession = await FFmpegKit.execute(ffmpegCmd);
     // final returnCode = await ffmpegSession!.getReturnCode();
 
@@ -50,10 +39,10 @@ abstract class ServerConfigInterface {
     //   }
     // }
 
-    final ffmpegPath =
-        "${Directory.current.path}${Platform.pathSeparator}resources${Platform.pathSeparator}ffmpeg${Platform.pathSeparator}";
-    print("${ffmpegPath}$ffmpegProgramFile $ffmpegCmd");
-    ffmpegShell.run("${ffmpegPath}$ffmpegProgramFile $ffmpegCmd");
+    // final ffmpegPath =
+    //     "${Directory.current.path}${Platform.pathSeparator}resources${Platform.pathSeparator}ffmpeg${Platform.pathSeparator}";
+    // print("${ffmpegPath}$ffmpegProgramFile $ffmpegCmd");
+    ffmpegShell.run(currFfmpegConfig.ffmpegConfigCmd);
   }
 
   void stopServerStreaming() {

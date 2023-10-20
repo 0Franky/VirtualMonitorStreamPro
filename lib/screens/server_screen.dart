@@ -52,7 +52,7 @@ class ServerScreen extends StatelessWidget {
     ));
     print("makeVirtualMonitor DONE!");
 
-    await getServerConfig().startServerStreaming();
+    await getServerConfig().startServerStreaming(getServerConfig().ffmpegConfigs[0]);
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text('startServerStreaming DONE!'),
     ));
