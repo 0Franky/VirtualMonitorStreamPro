@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:virtual_monitor_stream_pro/models/ffmpeg_config.dart';
 import 'package:virtual_monitor_stream_pro/models/server_config.dart';
 import 'package:virtual_monitor_stream_pro/models/server_platform_interface.dart';
 import 'package:virtual_monitor_stream_pro/models/server_pre_config.dart';
@@ -35,8 +36,14 @@ ServerConfig getServerConfig() {
   return ServerConfig(
     ffmpegConfigs: [
       ...server.Internal_GetServerFfmpegConfig(),
-      // CpuFfmpegConfig(),
+      // getCpuFfmpegConfig(),
     ],
     // virtualMonitorConfigs: ----,
   );
 }
+
+// FfmpegConfig getCpuFfmpegConfig() {
+//   return FfmpegConfig(
+
+//   );
+// }
