@@ -1,5 +1,6 @@
 import 'package:virtual_monitor_stream_pro/models/ffmpeg_config.dart';
 import 'package:virtual_monitor_stream_pro/models/server_pre_config.dart';
+import 'package:virtual_monitor_stream_pro/models/virtual_monitor_config.dart';
 
 abstract class ServerPlatformInterface {
   static late final String ffmpegProgramFile;
@@ -11,5 +12,5 @@ abstract class ServerPlatformInterface {
 
   FfmpegConfig Internal_GetServerFfmpegCpuConfig();
 
-  // List<VirtualMonitorConfig> Internal_GetServerVirtualMonitorConfig();
+  VirtualMonitorConfig Internal_GetServerVirtualMonitorConfig();
 }

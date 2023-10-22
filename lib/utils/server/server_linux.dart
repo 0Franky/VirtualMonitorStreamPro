@@ -2,6 +2,7 @@ import 'package:virtual_monitor_stream_pro/consts/configs.dart';
 import 'package:virtual_monitor_stream_pro/models/ffmpeg_config.dart';
 import 'package:virtual_monitor_stream_pro/models/server_platform_interface.dart';
 import 'package:virtual_monitor_stream_pro/models/server_pre_config.dart';
+import 'package:virtual_monitor_stream_pro/models/virtual_monitor_config.dart';
 
 class ServerLinux implements ServerPlatformInterface {
   static String ffmpegProgramFile = "ffmpeg";
@@ -22,13 +23,25 @@ class ServerLinux implements ServerPlatformInterface {
         getHwAccConfig("vaapi"),
       ];
 
-  // addVirtualMonitorCmds = [
-  //   "xrandr --addmode VIRTUAL1 ${width}x$height",
-  //   "xrandr --output VIRTUAL1 --mode ${width}x$height --left-of eDP1",
-  // ];
-  // removeVirtualMonitorCmds = [
-  //   "xrandr --output VIRTUAL1 --off",
-  // ];
+  FfmpegConfig Internal_GetServerFfmpegCpuConfig() {
+    return FfmpegConfig.getCpuConfig(
+      ffmpegProgramFile: ffmpegProgramFile,
+      ffmpegGrubber: ffmpegGrubber,
+      display: ":0.0",
+    );
+  }
+
+  VirtualMonitorConfig Internal_GetServerVirtualMonitorConfig() {
+    return VirtualMonitorConfig(
+      addVirtualMonitorCmds: [
+        "xrandr --addmode VIRTUAL1 ${DEFAULT_WIDTH}x$DEFAULT_HEIGHT",
+        "xrandr --output VIRTUAL1 --mode ${DEFAULT_WIDTH}x$DEFAULT_HEIGHT --left-of eDP1",
+      ],
+      removeVirtualMonitorCmds: [
+        "xrandr --output VIRTUAL1 --off",
+      ],
+    );
+  }
 
   FfmpegConfig getHwAccConfig(String hwAcc) {
     return FfmpegConfig(
@@ -43,15 +56,4 @@ class ServerLinux implements ServerPlatformInterface {
       optionalParams: "-preset superfast -tune zerolatency",
     );
   }
-
-  FfmpegConfig Internal_GetServerFfmpegCpuConfig() {
-    return FfmpegConfig.getCpuConfig(
-      ffmpegProgramFile: ffmpegProgramFile,
-      ffmpegGrubber: ffmpegGrubber,
-      display: ":0.0",
-    );
-  }
-
-  // @override
-// List<VirtualMonitorConfig> Internal_GetServerVirtualMonitorConfig() => [---];
 }

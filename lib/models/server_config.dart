@@ -7,11 +7,11 @@ import 'dart:io';
 // import 'package:ffmpeg_kit_flutter_full_gpl/ffmpeg_kit.dart';
 import 'package:process_run/shell.dart';
 import 'package:virtual_monitor_stream_pro/models/ffmpeg_config.dart';
+import 'package:virtual_monitor_stream_pro/models/virtual_monitor_config.dart';
 
 class ServerConfig {
   final List<FfmpegConfig> ffmpegConfigs;
-  late List<String> addVirtualMonitorCmds;
-  late List<String> removeVirtualMonitorCmds;
+  late VirtualMonitorConfig virtualMonitorConfig;
 
   // FFmpegSession? ffmpegSession;
   var ffmpegShell = Shell();
@@ -51,7 +51,7 @@ class ServerConfig {
   }
 
   Future<void> addVirtualMonitor() async {
-    for (final cmd in addVirtualMonitorCmds) {
+    for (final cmd in virtualMonitorConfig.addVirtualMonitorCmds) {
       final asyncFn = () async {
         final shell = Shell();
         await shell.run(cmd);
@@ -64,7 +64,7 @@ class ServerConfig {
   }
 
   Future<void> removeVirtualMonitor() async {
-    for (final cmd in removeVirtualMonitorCmds) {
+    for (final cmd in virtualMonitorConfig.removeVirtualMonitorCmds) {
       final asyncFn = () async {
         final shell = Shell();
         await shell.run(cmd);
