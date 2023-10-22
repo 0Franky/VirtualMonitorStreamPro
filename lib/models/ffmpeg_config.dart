@@ -41,7 +41,7 @@ class FfmpegConfig {
     this.bufsize = "512k",
     this.optionalParams = "",
     this.ffmpegProgramFile = "ffmpeg",
-    this.ffmpegPath = "ffmpeg",
+    this.ffmpegPath = "",
     this.protocol = STREAM_PROTOCOL,
     this.clientIp = DEFAULT_CLIENT_IP,
     this.clientPort = DEFAULT_PORT,
@@ -57,6 +57,7 @@ class FfmpegConfig {
     required String ffmpegProgramFile,
     required String ffmpegGrubber,
     required String display,
+    String ffmpegPath = "",
     String displayOptions = "",
     int framerate = 30,
   }) {

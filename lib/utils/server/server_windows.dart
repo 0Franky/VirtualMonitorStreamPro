@@ -9,6 +9,9 @@ import 'package:virtual_monitor_stream_pro/models/virtual_monitor_config.dart';
 final usbmmiddPath =
     "${Directory.current.path}${Platform.pathSeparator}resources${Platform.pathSeparator}usbmmidd_v2${Platform.pathSeparator}";
 
+final ffmpegPath =
+    "${Directory.current.path}${Platform.pathSeparator}resources${Platform.pathSeparator}ffmpeg${Platform.pathSeparator}";
+
 class ServerWindows implements ServerPlatformInterface {
   static String ffmpegProgramFile = "ffmpeg.exe";
   static String ffmpegGrubber = "gdigrab";
@@ -29,6 +32,7 @@ class ServerWindows implements ServerPlatformInterface {
   FfmpegConfig Internal_GetServerFfmpegCpuConfig() {
     return FfmpegConfig.getCpuConfig(
       ffmpegProgramFile: ffmpegProgramFile,
+      ffmpegPath: ffmpegPath,
       ffmpegGrubber: ffmpegGrubber,
       display: display,
       displayOptions:
@@ -50,6 +54,7 @@ class ServerWindows implements ServerPlatformInterface {
   FfmpegConfig getHwAccConfig(String hwAcc) {
     return FfmpegConfig(
       useHWAcceleration: true,
+      ffmpegPath: ffmpegPath,
       ffmpegProgramFile: ffmpegProgramFile,
       ffmpegGrubber: ffmpegGrubber,
       display: display,

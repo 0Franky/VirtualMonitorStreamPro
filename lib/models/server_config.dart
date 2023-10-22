@@ -11,13 +11,14 @@ import 'package:virtual_monitor_stream_pro/models/virtual_monitor_config.dart';
 
 class ServerConfig {
   final List<FfmpegConfig> ffmpegConfigs;
-  late VirtualMonitorConfig virtualMonitorConfig;
+  final VirtualMonitorConfig virtualMonitorConfigs;
 
   // FFmpegSession? ffmpegSession;
   var ffmpegShell = Shell();
 
   ServerConfig({
     required this.ffmpegConfigs,
+    required this.virtualMonitorConfigs,
   });
 
   Future<void> startServerStreaming(FfmpegConfig currFfmpegConfig) async {
@@ -51,7 +52,7 @@ class ServerConfig {
   }
 
   Future<void> addVirtualMonitor() async {
-    for (final cmd in virtualMonitorConfig.addVirtualMonitorCmds) {
+    for (final cmd in virtualMonitorConfigs.addVirtualMonitorCmds) {
       final asyncFn = () async {
         final shell = Shell();
         await shell.run(cmd);
@@ -64,7 +65,7 @@ class ServerConfig {
   }
 
   Future<void> removeVirtualMonitor() async {
-    for (final cmd in virtualMonitorConfig.removeVirtualMonitorCmds) {
+    for (final cmd in virtualMonitorConfigs.removeVirtualMonitorCmds) {
       final asyncFn = () async {
         final shell = Shell();
         await shell.run(cmd);
