@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:virtual_monitor_stream_pro/consts/configs.dart';
 import 'package:virtual_monitor_stream_pro/models/ffmpeg_config.dart';
-import 'package:virtual_monitor_stream_pro/models/server_config.dart';
 import 'package:virtual_monitor_stream_pro/models/server_platform_interface.dart';
 import 'package:virtual_monitor_stream_pro/models/server_pre_config.dart';
 
