@@ -52,7 +52,8 @@ class ServerScreen extends StatelessWidget {
     ));
     print("makeVirtualMonitor DONE!");
 
-    await getServerConfig().startServerStreaming(getServerConfig().ffmpegConfigs[2]);
+    await getServerConfig()
+        .startServerStreaming(getServerConfig().ffmpegConfigs[3]);
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text('startServerStreaming DONE!'),
     ));
@@ -60,6 +61,12 @@ class ServerScreen extends StatelessWidget {
   }
 
   void onStopServer(BuildContext context) async {
+    getServerConfig().stopServerStreaming();
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text('stopServerStreaming() DONE!'),
+    ));
+    print("stopServerStreaming() DONE!");
+
     await getServerConfig().removeVirtualMonitor();
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text('removeVirtualMonitor() DONE!'),

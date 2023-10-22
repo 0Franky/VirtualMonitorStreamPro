@@ -14,7 +14,7 @@ class ServerConfig {
   final VirtualMonitorConfig virtualMonitorConfigs;
 
   // FFmpegSession? ffmpegSession;
-  var ffmpegShell = Shell();
+  Shell ffmpegShell = Shell();
 
   ServerConfig({
     required this.ffmpegConfigs,
@@ -43,12 +43,12 @@ class ServerConfig {
     // final ffmpegPath =
     //     "${Directory.current.path}${Platform.pathSeparator}resources${Platform.pathSeparator}ffmpeg${Platform.pathSeparator}";
     // print("${ffmpegPath}$ffmpegProgramFile $ffmpegCmd");
-    ffmpegShell.run(currFfmpegConfig.ffmpegConfigCmd);
+    await ffmpegShell.run(currFfmpegConfig.ffmpegConfigCmd);
   }
 
   void stopServerStreaming() {
     // if (ffmpegSession != null) FFmpegKit.cancel(ffmpegSession!.getSessionId());
-    ffmpegShell.kill();
+    ffmpegShell.kill(ProcessSignal.sigkill);
   }
 
   Future<void> addVirtualMonitor() async {
