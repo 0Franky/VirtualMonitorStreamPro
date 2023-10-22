@@ -10,6 +10,10 @@ final usbmmiddPath =
     "${Directory.current.path}${Platform.pathSeparator}resources${Platform.pathSeparator}usbmmidd_v2${Platform.pathSeparator}";
 
 class ServerWindows implements ServerPlatformInterface {
+  static String ffmpegProgramFile = "ffmpeg.exe";
+  static String ffmpegGrubber = "gdigrab";
+  static String display = "desktop";
+
   @override
   ServerPreConfig Internal_GetServerPreConfig() =>
       ServerPreConfig(preStartConfigCmds: [
@@ -29,17 +33,27 @@ class ServerWindows implements ServerPlatformInterface {
   //   'cmd /k "${usbmmiddPath}deviceinstaller64.exe" enableidd 0'
   // ];
 
-  static FfmpegConfig getHwAccConfig(String hwAcc) {
+  FfmpegConfig getHwAccConfig(String hwAcc) {
     return FfmpegConfig(
       useHWAcceleration: true,
-      ffmpegProgramFile: "ffmpeg.exe",
-      ffmpegGrubber: "gdigrab",
-      vaapiDeviceConfig:
+      ffmpegProgramFile: ffmpegProgramFile,
+      ffmpegGrubber: ffmpegGrubber,
+      display: display,
+      hwAccelerationDeviceConfig:
           "-init_hw_device $hwAcc:0 -hwaccel $hwAcc -hwaccel_device $hwAcc",
       displayOptions:
           "-offset_x 0 -offset_y 0 -video_size ${DEFAULT_WIDTH}x$DEFAULT_HEIGHT",
       videoCodec: "h264_nvenc",
-      display: "desktop",
+    );
+  }
+
+  FfmpegConfig Internal_GetServerFfmpegCpuConfig() {
+    return FfmpegConfig.getCpuConfig(
+      ffmpegProgramFile: ffmpegProgramFile,
+      ffmpegGrubber: ffmpegGrubber,
+      display: display,
+      displayOptions:
+          "-offset_x 0 -offset_y 0 -video_size ${DEFAULT_WIDTH}x$DEFAULT_HEIGHT",
     );
   }
 

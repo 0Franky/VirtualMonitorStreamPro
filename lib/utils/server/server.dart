@@ -36,14 +36,8 @@ ServerConfig getServerConfig() {
   return ServerConfig(
     ffmpegConfigs: [
       ...server.Internal_GetServerFfmpegConfig(),
-      // getCpuFfmpegConfig(),
+      server.Internal_GetServerFfmpegCpuConfig(),
     ],
     // virtualMonitorConfigs: ----,
   );
 }
-
-// FfmpegConfig getCpuFfmpegConfig() {
-//   return FfmpegConfig(
-
-//   );
-// }

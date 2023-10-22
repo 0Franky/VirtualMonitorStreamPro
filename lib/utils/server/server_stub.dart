@@ -11,6 +11,10 @@ class ServerStub implements ServerPlatformInterface {
   List<FfmpegConfig> Internal_GetServerFfmpegConfig() =>
       throw const NoServerCommandFound();
 
+  @override
+  FfmpegConfig Internal_GetServerFfmpegCpuConfig() =>
+      throw const NoServerCommandFound();
+
   // @override
 // List<VirtualMonitorConfig> Internal_GetServerVirtualMonitorConfig() => [---];
 }

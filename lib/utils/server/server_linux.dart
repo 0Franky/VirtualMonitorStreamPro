@@ -4,6 +4,9 @@ import 'package:virtual_monitor_stream_pro/models/server_platform_interface.dart
 import 'package:virtual_monitor_stream_pro/models/server_pre_config.dart';
 
 class ServerLinux implements ServerPlatformInterface {
+  static String ffmpegProgramFile = "ffmpeg";
+  static String ffmpegGrubber = "x11grab";
+
   @override
   ServerPreConfig Internal_GetServerPreConfig() =>
       ServerPreConfig(preStartConfigCmds: [
@@ -30,13 +33,22 @@ class ServerLinux implements ServerPlatformInterface {
   FfmpegConfig getHwAccConfig(String hwAcc) {
     return FfmpegConfig(
       useHWAcceleration: true,
-      ffmpegGrubber: "x11grab",
+      ffmpegProgramFile: ffmpegProgramFile,
+      ffmpegGrubber: ffmpegGrubber,
       display: ":0.0",
-      scaleVaapiConfig: "-vaapi_device /dev/dri/renderD128",
-      vaapiDeviceConfig:
+      hwAccelerationOptionalConfig: "-vaapi_device /dev/dri/renderD128",
+      hwAccelerationDeviceConfig:
           '-vf \'format=nv12,hwupload,scale_vaapi=w=$DEFAULT_WIDTH:h=$DEFAULT_HEIGHT\'',
       videoCodec: "h264_vaapi",
       optionalParams: "-preset superfast -tune zerolatency",
+    );
+  }
+
+  FfmpegConfig Internal_GetServerFfmpegCpuConfig() {
+    return FfmpegConfig.getCpuConfig(
+      ffmpegProgramFile: ffmpegProgramFile,
+      ffmpegGrubber: ffmpegGrubber,
+      display: ":0.0",
     );
   }
 
