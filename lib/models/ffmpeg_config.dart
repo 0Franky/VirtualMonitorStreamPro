@@ -1,6 +1,8 @@
 import 'package:virtual_monitor_stream_pro/consts/configs.dart';
 
 class FfmpegConfig {
+  final String configName;
+
   final String ffmpegGrubber;
   final String display;
   final String displayOptions;
@@ -25,6 +27,8 @@ class FfmpegConfig {
   final int clientPort;
 
   FfmpegConfig({
+    required this.configName,
+
     required this.ffmpegGrubber,
     required this.videoCodec,
     required this.display,
@@ -60,6 +64,7 @@ class FfmpegConfig {
     int framerate = 30,
   }) {
     return FfmpegConfig(
+      configName: "cpu",
       useHWAcceleration: false,
       ffmpegProgramFile: ffmpegProgramFile,
       ffmpegGrubber: ffmpegGrubber,

@@ -1,12 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:virtual_monitor_stream_pro/consts/strings.dart';
+import 'package:virtual_monitor_stream_pro/models/ffmpeg_config.dart';
 import 'package:virtual_monitor_stream_pro/style/theme.dart';
 import 'package:virtual_monitor_stream_pro/utils/server/server.dart';
 
-class ServerScreen extends StatelessWidget {
+class ServerScreen extends StatefulWidget {
   const ServerScreen({super.key});
 
+  @override
+  State<ServerScreen> createState() => _ServerScreenState();
+}
+
+class _ServerScreenState extends State<ServerScreen> {
   final vSpacer = 30.0;
+
+  final serverPreConfig = getServerPreConfig();
+  final serverConfig = getServerConfig();
+  late FfmpegConfig selectedFfmpegConfig;
+
+  @override
+  void initState() {
+    super.initState();
+
+    selectedFfmpegConfig = serverConfig.ffmpegConfigs[0];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +40,23 @@ class ServerScreen extends StatelessWidget {
                 child: const Text('Pre config device'),
                 onPressed: () => onStartPreConfig(context),
               ),
+            DropdownButton<FfmpegConfig>(
+              alignment: AlignmentDirectional.center,
+              value: selectedFfmpegConfig,
+              items: serverConfig.ffmpegConfigs
+                  .map(
+                    (config) => DropdownMenuItem(
+                      value: config,
+                      child: Text(config.configName),
+                    ),
+                  )
+                  .toList(),
+              onChanged: (value) {
+                setState(() {
+                  selectedFfmpegConfig = value!;
+                });
+              },
+            ),
             ElevatedButton(
               child: const Text('Start Server'),
               onPressed: () => onStartServer(context),
@@ -38,7 +72,7 @@ class ServerScreen extends StatelessWidget {
   }
 
   void onStartPreConfig(BuildContext context) {
-    getServerPreConfig().startPreConfig();
+    serverPreConfig.startPreConfig();
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text('Pre config device DONE!'),
     ));
@@ -46,14 +80,13 @@ class ServerScreen extends StatelessWidget {
   }
 
   void onStartServer(BuildContext context) async {
-    await getServerConfig().addVirtualMonitor();
+    await serverConfig.addVirtualMonitor();
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text('makeVirtualMonitor DONE!'),
     ));
     print("makeVirtualMonitor DONE!");
 
-    await getServerConfig()
-        .startServerStreaming(getServerConfig().ffmpegConfigs[3]);
+    await serverConfig.startServerStreaming(selectedFfmpegConfig!);
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text('startServerStreaming DONE!'),
     ));
@@ -61,13 +94,13 @@ class ServerScreen extends StatelessWidget {
   }
 
   void onStopServer(BuildContext context) async {
-    getServerConfig().stopServerStreaming();
+    serverConfig.stopServerStreaming();
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text('stopServerStreaming() DONE!'),
     ));
     print("stopServerStreaming() DONE!");
 
-    await getServerConfig().removeVirtualMonitor();
+    await serverConfig.removeVirtualMonitor();
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text('removeVirtualMonitor() DONE!'),
     ));

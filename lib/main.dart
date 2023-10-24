@@ -1,6 +1,7 @@
 // import 'package:ffmpeg_kit_flutter_full_gpl/ffmpeg_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:media_kit/media_kit.dart';
+import 'package:universal_platform/universal_platform.dart';
 import 'package:virtual_monitor_stream_pro/consts/strings.dart';
 import 'package:virtual_monitor_stream_pro/screens/home_page_screen.dart';
 import 'package:virtual_monitor_stream_pro/style/theme.dart';
@@ -14,7 +15,10 @@ void main() async {
 Future<void> prepareApp() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await windowManager.ensureInitialized();
+  if (UniversalPlatform.isDesktop) {
+    await windowManager.ensureInitialized();
+  
+  }
   MediaKit.ensureInitialized();
 }
 

@@ -48,6 +48,7 @@ class ServerLinux implements ServerPlatformInterface {
     String rate = "2000K",
   }) {
     return FfmpegConfig(
+      configName: "vaapi",
       useHWAcceleration: true,
       ffmpegProgramFile: ffmpegProgramFile,
       ffmpegGrubber: ffmpegGrubber,
@@ -67,6 +68,7 @@ class ServerLinux implements ServerPlatformInterface {
     String optionalParams = "",
   }) {
     return FfmpegConfig(
+      configName: "cuda $videoCodec",
       useHWAcceleration: true,
       ffmpegProgramFile: ffmpegProgramFile,
       ffmpegGrubber: ffmpegGrubber,

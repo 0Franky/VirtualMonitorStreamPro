@@ -53,6 +53,7 @@ class ServerWindows implements ServerPlatformInterface {
 
   FfmpegConfig getHwAccConfig(String hwAcc) {
     return FfmpegConfig(
+      configName: hwAcc,
       useHWAcceleration: true,
       ffmpegPath: ffmpegPath,
       ffmpegProgramFile: ffmpegProgramFile,
