@@ -2,17 +2,24 @@ const STREAM_PROTOCOL = 'udp';
 const CLIENT_URI_PARAMS = '?overrun_nonfatal=1';
 const CLIENT_INIT_PLAYER_PARAMS = {
   'rtsp-transport': 'udp',
+  'profile': 'low-latency',
+
+  'scorrect-pts': 'no',
+  'fps': '23.976',
 
   'cache': 'no',
-  // 'timed': 'no',
+  'cache-on-disk': 'no',
+
   'demuxer-thread': 'no',
+  'demuxer-max-bytes': '0',
+  
   'vd-lavc-threads': '1',
 
   // 'no-cache': '',
   'untimed': '',
   // 'no-demuxer-thread': '',
   // 'vd-lavc-threads': '1',
-  
+
   // 'keep-open': '',
   // 'hwdec-codecs': 'all',
   // 'cache-secs': '0',
