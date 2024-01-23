@@ -4,12 +4,12 @@ const CLIENT_INIT_PLAYER_PARAMS = {
   'rtsp-transport': 'udp',
 
   'cache': 'no',
-  'timed': 'no',
+  // 'timed': 'no',
   'demuxer-thread': 'no',
   'vd-lavc-threads': '1',
 
   // 'no-cache': '',
-  // 'untimed': '',
+  'untimed': '',
   // 'no-demuxer-thread': '',
   // 'vd-lavc-threads': '1',
   
