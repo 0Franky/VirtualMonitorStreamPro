@@ -1,30 +1,42 @@
 import 'dart:io';
 
 import 'package:virtual_monitor_stream_pro/models/server_config.dart';
+import 'package:virtual_monitor_stream_pro/models/server_platform_interface.dart';
 import 'package:virtual_monitor_stream_pro/models/server_pre_config.dart';
-import 'package:virtual_monitor_stream_pro/utils/server/server_stub.dart'
-    as stub;
-import 'package:virtual_monitor_stream_pro/utils/server/server_windows.dart'
-    as windows;
-import 'package:virtual_monitor_stream_pro/utils/server/server_linux.dart'
-    as linux;
+import 'package:virtual_monitor_stream_pro/utils/server/server_stub.dart';
+import 'package:virtual_monitor_stream_pro/utils/server/server_windows.dart';
+import 'package:virtual_monitor_stream_pro/utils/server/server_linux.dart';
 
 ServerPreConfig getServerPreConfig() {
+  ServerPlatformInterface server;
+
   if (Platform.isLinux) {
-    return linux.Internal_GetServerPreConfig();
+    server = ServerLinux();
   } else if (Platform.isWindows) {
-    return windows.Internal_GetServerPreConfig();
+    server = ServerWindows();
   } else {
-    return stub.Internal_GetServerPreConfig();
+    server = ServerStub();
   }
+
+  return server.Internal_GetServerPreConfig();
 }
 
-ServerConfigInterface getServerConfig() {
+ServerConfig getServerConfig() {
+  ServerPlatformInterface server;
+
   if (Platform.isLinux) {
-    return linux.Internal_GetServerConfig();
+    server = ServerLinux();
   } else if (Platform.isWindows) {
-    return windows.Internal_GetServerConfig();
+    server = ServerWindows();
   } else {
-    return stub.Internal_GetServerConfig();
+    server = ServerStub();
   }
+
+  return ServerConfig(
+    ffmpegConfigs: [
+      ...server.Internal_GetServerFfmpegConfig(),
+      server.Internal_GetServerFfmpegCpuConfig(),
+    ],
+    virtualMonitorConfigs: server.Internal_GetServerVirtualMonitorConfig(),
+  );
 }
