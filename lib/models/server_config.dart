@@ -43,7 +43,7 @@ class ServerConfig {
     // final ffmpegPath =
     //     "${Directory.current.path}${Platform.pathSeparator}resources${Platform.pathSeparator}ffmpeg${Platform.pathSeparator}";
     // print("${ffmpegPath}$ffmpegProgramFile $ffmpegCmd");
-    await ffmpegShell.run(currFfmpegConfig.ffmpegConfigCmd);
+    /* await */ ffmpegShell.run(currFfmpegConfig.ffmpegConfigCmd);
   }
 
   void stopServerStreaming() {
