@@ -4,7 +4,7 @@ import 'package:media_kit_video/media_kit_video.dart';
 import 'package:virtual_monitor_stream_pro/consts/configs.dart';
 import 'package:virtual_monitor_stream_pro/consts/strings.dart';
 import 'package:virtual_monitor_stream_pro/style/theme.dart';
-import 'package:window_manager/window_manager.dart';
+// import 'package:window_manager/window_manager.dart';
 
 class ClientScreen extends StatelessWidget {
   final String loopbackAddress;
@@ -38,11 +38,11 @@ class ClientScreen extends StatelessWidget {
   }
 
   void toggleFullScreen() async {
-    if (await windowManager.isFullScreen()) {
-      await windowManager.setFullScreen(true);
-    } else {
-      await windowManager.setFullScreen(false);
-    }
+    // if (await windowManager.isFullScreen()) {
+    //   await windowManager.setFullScreen(true);
+    // } else {
+    //   await windowManager.setFullScreen(false);
+    // }
   }
 }
 
