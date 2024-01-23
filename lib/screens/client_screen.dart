@@ -88,10 +88,12 @@ class _MediaPlayerState extends State<MediaPlayer> {
       }
     }
 
+    print('================');
     print('$STREAM_PROTOCOL://${widget.source}$CLIENT_URI_PARAMS');
+    print(
+        '$STREAM_PROTOCOL://${widget.source}$CLIENT_URI_PARAMS ${CLIENT_INIT_PLAYER_PARAMS.entries.map((e) => '--${e.key}=${e.value}').toList().join(" ")}');
+    print('================');
     player.open(Media('$STREAM_PROTOCOL://${widget.source}$CLIENT_URI_PARAMS'));
-    player.open(Media(
-        '$STREAM_PROTOCOL://${widget.source}$CLIENT_URI_PARAMS ${CLIENT_INIT_PLAYER_PARAMS.entries.map((e) => '--${e.key}=${e.value}').toList().join(" ")}'));
   }
 
   @override

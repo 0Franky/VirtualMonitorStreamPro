@@ -17,10 +17,10 @@ dependencies:
   # ffmpeg_kit_flutter: ^6.0.3
   # ffmpeg_kit_flutter_full_gpl: ^6.0.3
 
-  media_kit: ^1.1.10+1 # Primary package.
+  media_kit: ^1.1.10+1                             # Primary package.
   video_player_media_kit: ^1.0.5
-  media_kit_video: ^1.2.4 # For video rendering.
-  media_kit_libs_video: ^1.0.4 # Native video dependencies.
+  media_kit_video: ^1.2.4                          # For video rendering.
+  media_kit_libs_video: ^1.0.4                     # Native video dependencies.
   # media_kit_libs_audio: ^1.0.4                   # Native audio dependencies.
   media_kit_libs_linux: ^1.1.3
   media_kit_libs_windows_video: ^1.0.9
