@@ -82,11 +82,12 @@ class _MediaPlayerState extends State<MediaPlayer> {
 
   void initPlayer() async {
     if (player.platform is NativePlayer) {
-      for (final config in CLIENT_INIT_PLAYER_PARAMS) {
-        await (player.platform as dynamic).setProperty(config[0], config[1]);
+      for (final config in CLIENT_INIT_PLAYER_PARAMS.entries) {
+        await (player.platform as dynamic).setProperty(config.key, config.value);
       }
     }
 
+    print('$STREAM_PROTOCOL://${widget.source}$CLIENT_URI_PARAMS');
     player.open(Media('$STREAM_PROTOCOL://${widget.source}$CLIENT_URI_PARAMS'));
   }
 

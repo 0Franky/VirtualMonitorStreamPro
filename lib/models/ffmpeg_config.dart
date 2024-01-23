@@ -28,7 +28,6 @@ class FfmpegConfig {
 
   FfmpegConfig({
     required this.configName,
-
     required this.ffmpegGrubber,
     required this.videoCodec,
     required this.display,
@@ -68,6 +67,7 @@ class FfmpegConfig {
       useHWAcceleration: false,
       ffmpegProgramFile: ffmpegProgramFile,
       ffmpegGrubber: ffmpegGrubber,
+      ffmpegPath: ffmpegPath,
       display: display,
       videoCodec: "libx264",
       framerate: framerate,
