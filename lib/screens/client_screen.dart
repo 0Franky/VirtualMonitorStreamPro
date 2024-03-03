@@ -57,7 +57,7 @@ class MediaPlayer extends StatefulWidget {
 }
 
 class _MediaPlayerState extends State<MediaPlayer> {
-  late final player = Player(
+  final player = Player(
     configuration: const PlayerConfiguration(
       // logLevel: MPVLogLevel.debug,
       title: '$APP_NAME Client',
@@ -66,14 +66,7 @@ class _MediaPlayerState extends State<MediaPlayer> {
     ),
   );
 
-  late final controller = VideoController(
-    player,
-    configuration: VideoControllerConfiguration(
-      enableHardwareAcceleration: true,
-      width: MediaQuery.of(context).size.width.toInt(),
-      height: MediaQuery.of(context).size.height.toInt(),
-    ),
-  );
+  late final VideoController controller;
 
   @override
   void initState() {
@@ -82,6 +75,15 @@ class _MediaPlayerState extends State<MediaPlayer> {
   }
 
   void initPlayer() async {
+    controller = VideoController(
+      player,
+      configuration: VideoControllerConfiguration(
+        enableHardwareAcceleration: true,
+        // width: MediaQuery.of(context).size.width.toInt(),
+        // height: MediaQuery.of(context).size.height.toInt(),
+      ),
+    );
+
     if (player.platform is NativePlayer) {
       for (final config in CLIENT_INIT_PLAYER_PARAMS.entries) {
         await (player.platform as dynamic)
