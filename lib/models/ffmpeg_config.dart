@@ -18,6 +18,7 @@ class FfmpegConfig {
   final String rate;
   final String bufsize;
   final String optionalParams;
+  final String formatFile;
 
   final String ffmpegProgramFile;
   final String ffmpegPath;
@@ -41,6 +42,8 @@ class FfmpegConfig {
     this.rate = "2000K",
     this.bufsize = "512k",
     this.optionalParams = "",
+    // this.formatFile ="rawvideo",
+    this.formatFile = "mpegts",
     this.ffmpegProgramFile = "ffmpeg",
     this.ffmpegPath = "",
     this.protocol = STREAM_PROTOCOL,
@@ -49,7 +52,7 @@ class FfmpegConfig {
   });
 
   String get ffmpegConfigParams =>
-      '${useHWAcceleration ? '$hwAccelerationDeviceConfig $hwAccelerationOptionalConfig' : ''} -f $ffmpegGrubber -s ${width}x$height -framerate $framerate $displayOptions -i $display -c:v $videoCodec $optionalParams ${useHWAcceleration ? '-maxrate $rate' : ''} -bufsize $bufsize -f rawvideo $STREAM_PROTOCOL://$DEFAULT_CLIENT_IP:$DEFAULT_PORT';
+      '${useHWAcceleration ? '$hwAccelerationDeviceConfig $hwAccelerationOptionalConfig' : ''} -f $ffmpegGrubber -s ${width}x$height -framerate $framerate $displayOptions -i $display -c:v $videoCodec $optionalParams ${useHWAcceleration ? '-maxrate $rate' : ''} -bufsize $bufsize -f $formatFile $STREAM_PROTOCOL://$DEFAULT_CLIENT_IP:$DEFAULT_PORT';
 
   String get ffmpegConfigCmd =>
       '$ffmpegPath$ffmpegProgramFile $ffmpegConfigParams';

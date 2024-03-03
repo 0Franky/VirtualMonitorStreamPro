@@ -63,7 +63,9 @@ class ServerWindows implements ServerPlatformInterface {
           "-init_hw_device $hwAcc:0 -hwaccel $hwAcc -hwaccel_device $hwAcc",
       displayOptions:
           "-offset_x 0 -offset_y 0 -video_size ${DEFAULT_WIDTH}x$DEFAULT_HEIGHT",
-      videoCodec: "h264_nvenc",
+      // videoCodec: "h264_nvenc",
+      videoCodec: "hevc_nvenc",
+      optionalParams: "-qp:v 20 -c:a copy -g 10 -delay 0 -preset fast -tune ull -profile:v main10 -level:v 4.1 -b:v 4000k -rc-lookahead 0"
     );
   }
 }
