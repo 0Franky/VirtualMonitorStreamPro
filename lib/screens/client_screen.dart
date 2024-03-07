@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:media_kit/media_kit.dart';
 import 'package:media_kit_video/media_kit_video.dart';
 import 'package:virtual_monitor_stream_pro/consts/configs.dart';
@@ -16,24 +17,24 @@ class ClientScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(kToolbarHeight),
-        child: Opacity(
-          opacity: 0.8,
-          child: appAppBar(
-            context: context,
-            title: '$APP_NAME - Client',
-            actions: [
-              IconButton(
-                icon: const Icon(
-                  Icons.fullscreen_rounded,
-                ),
-                onPressed: toggleFullScreen,
-              )
-            ],
-          ),
-        ),
-      ),
+      // appBar: PreferredSize(
+      //   preferredSize: const Size.fromHeight(kToolbarHeight),
+      //   child: Opacity(
+      //     opacity: 0.8,
+      //     child: appAppBar(
+      //       context: context,
+      //       title: '$APP_NAME - Client',
+      //       actions: [
+      //         IconButton(
+      //           icon: const Icon(
+      //             Icons.fullscreen_rounded,
+      //           ),
+      //           onPressed: toggleFullScreen,
+      //         )
+      //       ],
+      //     ),
+      //   ),
+      // ),
       body: MediaPlayer(source: loopbackAddress),
     );
   }
@@ -71,6 +72,13 @@ class _MediaPlayerState extends State<MediaPlayer> {
   @override
   void initState() {
     super.initState();
+
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.landscapeLeft,
+    ]);
+
     initPlayer();
   }
 

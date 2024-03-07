@@ -4,7 +4,8 @@ import 'package:media_kit/media_kit.dart';
 import 'package:universal_platform/universal_platform.dart';
 import 'package:video_player_media_kit/video_player_media_kit.dart';
 import 'package:virtual_monitor_stream_pro/consts/strings.dart';
-import 'package:virtual_monitor_stream_pro/screens/home_page_screen.dart';
+import 'package:virtual_monitor_stream_pro/screens/client_screen.dart';
+// import 'package:virtual_monitor_stream_pro/screens/home_page_screen.dart';
 import 'package:virtual_monitor_stream_pro/style/theme.dart';
 // import 'package:window_manager/window_manager.dart';
 
@@ -49,7 +50,7 @@ class _VirtualMonitorStreamProState extends State<VirtualMonitorStreamPro> {
     return MaterialApp(
       title: APP_NAME,
       theme: appTheme,
-      home: const HomePageScreen(),
+      home: ClientScreen(),
     );
   }
 
