@@ -53,6 +53,7 @@ class ServerLinux implements ServerPlatformInterface {
       ffmpegProgramFile: ffmpegProgramFile,
       ffmpegGrubber: ffmpegGrubber,
       display: ":0.0",
+      // displayOptions: "-s ${DEFAULT_WIDTH}x$DEFAULT_HEIGHT",
       hwAccelerationOptionalConfig: "-vaapi_device /dev/dri/renderD128",
       hwAccelerationDeviceConfig:
           '-vf \'format=nv12,hwupload,scale_vaapi=w=$DEFAULT_WIDTH:h=$DEFAULT_HEIGHT\'',

@@ -60,12 +60,13 @@ class ServerWindows implements ServerPlatformInterface {
       ffmpegGrubber: ffmpegGrubber,
       display: display,
       hwAccelerationDeviceConfig:
-          "-init_hw_device $hwAcc:0 -hwaccel $hwAcc -hwaccel_device $hwAcc",
+          "-hwaccel_output_format $hwAcc -hwaccel_device 0",
       displayOptions:
-          "-offset_x 0 -offset_y 0 -video_size ${DEFAULT_WIDTH}x$DEFAULT_HEIGHT",
+          // "-s ${DEFAULT_WIDTH}x$DEFAULT_HEIGHT" +
+          "-offset_x 0 -offset_y 0",
       // videoCodec: "h264_nvenc",
       videoCodec: "hevc_nvenc",
-      optionalParams: "-qp:v 20 -c:a copy -g 10 -delay 0 -preset fast -tune ull -profile:v main10 -level:v 4.1 -b:v 4000k -rc-lookahead 0"
+      optionalParams: "-vf scale=$DEFAULT_WIDTH:$DEFAULT_HEIGHT -qp:v 20 -c:a copy -c:s copy -g 5 -delay 0 -preset fast -tune ull -profile:v main10 -level:v 4.1 -b:v 2000k -rc-lookahead 0"
     );
   }
 }
